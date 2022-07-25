@@ -29,6 +29,7 @@ func main() {
 EOF
 
 # Build 
+go mod tidy
 go build -o socks-server main.go
 ```
 

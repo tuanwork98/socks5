@@ -28,7 +28,7 @@ func main() {
 }
 EOF
 
-# Build 
+# Install requitments module and Build 
 go mod tidy
 go build -o socks-server main.go
 ```

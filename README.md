@@ -1,3 +1,40 @@
+# How to build
+```
+mkdir mysocks
+cd mysocks
+git clone https://github.com/tuanwork98/socks5.git
+
+# Init module
+go mod init mysocks
+
+# Create main.go
+cat << EOF > main.go
+package main
+import (
+        "mysocks/socks5"
+)
+func main() {
+    // Create a SOCKS5 server
+    conf := &socks5.Config{}
+    server, err := socks5.New(conf)
+    if err != nil {
+        panic(err)
+    }
+
+    // Create SOCKS5 proxy on localhost port 8000
+    if err := server.ListenAndServe("tcp", "127.0.0.1:8001"); err != nil {
+        panic(err)
+    }
+}
+EOF
+
+# Build 
+go build -o socks-server main.go
+```
+
+
+
+
 go-socks5 [![Build Status](https://travis-ci.org/armon/go-socks5.png)](https://travis-ci.org/armon/go-socks5)
 =========
 
